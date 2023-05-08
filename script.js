@@ -58,12 +58,13 @@ submitButton.addEventListener('click', () => {
   if ((prevWrapper = document.querySelector('.wrapper'))) {
     document.body.removeChild(prevWrapper);
   }
-
+  const container = document.createElement('div');
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper');
   wrapper.style.width = `${columns * 100}px`;
   wrapper.style.height = `${rows * 100}px`;
-  document.body.appendChild(wrapper);
+  document.body.appendChild(container);
+  container.appendChild(wrapper);
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       const element = document.createElement('a');
@@ -85,6 +86,6 @@ submitButton.addEventListener('click', () => {
   generateButton.addEventListener('click', () => {
     document.getElementById('generatedText').innerHTML = payline();
   });
-  document.body.appendChild(generateButton);
-  document.body.appendChild(textfield);
+  container.appendChild(generateButton);
+  container.appendChild(textfield);
 });
