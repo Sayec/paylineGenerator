@@ -55,10 +55,11 @@ submitButton.addEventListener('click', () => {
 
     return;
   }
-  if ((prevWrapper = document.querySelector('.wrapper'))) {
-    document.body.removeChild(prevWrapper);
+  if ((prevContainer = document.querySelector('.container'))) {
+    document.body.removeChild(prevContainer);
   }
   const container = document.createElement('div');
+  container.classList.add('container');
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper');
   wrapper.style.width = `${columns * 100}px`;
