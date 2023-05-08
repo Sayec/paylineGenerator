@@ -4,12 +4,68 @@
   font-family: 'Poppins', Arial, Tahoma, sans-serif;
   box-sizing: border-box;
 }
+
+.menu {
+  width: 300px;
+  height: 200px;
+  margin: 50px auto 0;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.menu .input {
+  display: flex;
+  justify-content: space-between;
+}
+.menu .input input {
+  font-size: 20px;
+  width: 150px;
+}
+.menu label {
+  font-size: 20px;
+}
+.menu .submitButton,
+.generateButton {
+  width: 300px;
+  background-color: #f1f1f1;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+.generateButton {
+  margin: 50px auto;
+}
+.menu .submitButton:hover,
+.generateButton:hover {
+  background-color: black;
+  color: white;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .wrapper {
-  /* width: 500px;
-  height: 300px; */
+  margin: 0 auto;
   background-color: #aaaaaa;
   display: flex;
   flex-wrap: wrap;
+}
+#generatedText {
+  margin: 0 auto;
+  width: 50%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 20px;
+  resize: none;
 }
 a {
   border: 1px solid black;

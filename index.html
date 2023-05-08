@@ -8,11 +8,17 @@
     <title>Payline Generator</title>
   </head>
   <body>
-    <label for="fname">Rows:</label>
-    <input type="number" min="1" id="rows" name="rows" /><br /><br />
-    <label for="lname">Columns:</label>
-    <input type="number" min="1" id="columns" name="colums" /><br /><br />
-    <button class="submitButton">Submit</button>
+    <div class="menu">
+      <div class="rowInput input">
+        <label for="fname">Rows:</label>
+        <input type="number" min="1" id="rows" name="rows" />
+      </div>
+      <div class="columnInput input">
+        <label for="lname">Columns:</label>
+        <input type="number" min="1" id="columns" name="colums" />
+      </div>
+      <button class="submitButton">Submit</button>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>

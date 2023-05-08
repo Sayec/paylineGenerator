@@ -81,11 +81,13 @@ submitButton.addEventListener('click', () => {
   aElements = document.querySelectorAll('a');
   aElements.forEach((el) => (el.style.flexBasis = `${100 / columns}%`));
   const generateButton = document.createElement('button');
+  generateButton.classList.add('generateButton');
   generateButton.innerHTML = 'Generate';
   const textfield = document.createElement('textarea');
   textfield.id = 'generatedText';
   generateButton.addEventListener('click', () => {
-    document.getElementById('generatedText').innerHTML = payline();
+    text = payline();
+    document.getElementById('generatedText').innerHTML += text + ',\n';
   });
   container.appendChild(generateButton);
   container.appendChild(textfield);
