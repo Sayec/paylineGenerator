@@ -80,6 +80,8 @@ submitButton.addEventListener('click', () => {
   aElements.forEach((el) => (el.style.flexBasis = `${100 / columns}%`));
   const generateButton = document.createElement('button');
   generateButton.innerHTML = 'Generate';
+  const textfield = document.createElement('textarea');
+  textfield.id = 'generatedText';
   generateButton.addEventListener('click', () => {
     document.getElementById('generatedText').innerHTML = payline();
   });
