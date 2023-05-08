@@ -1,8 +1,8 @@
 let submitButton = document.querySelector('.submitButton');
 let aElements = document.querySelectorAll('a');
 let arrayCheck = [];
-const rows = document.getElementById('rows').value;
-const columns = document.getElementById('columns').value;
+let rows;
+let columns;
 
 const checkColumn = (columnIndex) => {
   let tempArray = [];
@@ -47,6 +47,14 @@ const payline = () => {
 };
 
 submitButton.addEventListener('click', () => {
+  rows = document.getElementById('rows').value;
+  columns = document.getElementById('columns').value;
+
+  if (!columns || !rows) {
+    alert('Wpisz wartości');
+
+    return;
+  }
   if ((prevWrapper = document.querySelector('.wrapper'))) {
     document.body.removeChild(prevWrapper);
   }
@@ -70,8 +78,6 @@ submitButton.addEventListener('click', () => {
   }
   aElements = document.querySelectorAll('a');
   aElements.forEach((el) => (el.style.flexBasis = `${100 / columns}%`));
-  const textfield = document.createElement('textarea');
-  textfield.id = 'generatedText';
   const generateButton = document.createElement('button');
   generateButton.innerHTML = 'Generate';
   generateButton.addEventListener('click', () => {
