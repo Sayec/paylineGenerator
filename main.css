@@ -26,7 +26,8 @@
   font-size: 20px;
 }
 .menu .submitButton,
-.generateButton {
+.generateButton,
+.removeButton {
   width: 300px;
   background-color: #f1f1f1;
   color: black;
@@ -37,11 +38,13 @@
   border-radius: 5px;
   text-align: center;
 }
-.generateButton {
+.generateButton,
+.removeButton {
   margin: 50px auto;
 }
 .menu .submitButton:hover,
-.generateButton:hover {
+.generateButton:hover,
+.removeButton:hover {
   background-color: black;
   color: white;
 }

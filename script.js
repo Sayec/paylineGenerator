@@ -1,6 +1,12 @@
-let submitButton = document.querySelector('.submitButton');
+const submitButton = document.querySelector('.submitButton');
+const container = document.querySelector('.container');
+const wrapper = document.querySelector('.wrapper');
+const generateButton = document.querySelector('.generateButton');
+const removeButton = document.querySelector('.removeButton');
+const generatedText = document.getElementById('generatedText');
 let aElements = document.querySelectorAll('a');
 let arrayCheck = [];
+let textsArray = [];
 let rows;
 let columns;
 
@@ -19,6 +25,11 @@ const getClickedElements = () => {
   return tempArray;
 };
 
+const printPaylines = () => {
+  textsArray = textsArray.filter((element) => element !== undefined);
+  return textsArray.join(', \n');
+};
+
 const toggleClicked = (element) => {
   arrayCheck = [];
   if (element.classList.item(0) === 'clicked') return;
@@ -32,43 +43,54 @@ const payline = () => {
   let testPassed = true;
   let text = '[';
   for (let i = 0; i < columns; i++) {
-    console.log(checkColumn(i));
     if (!checkColumn(i)) {
       testPassed = false;
     }
   }
   if (!testPassed) return 'Zaznacz pole w każdej kolumnie';
-  getClickedElements().forEach((el) => {
-    text += `[${el.dataset.row}, ${el.dataset.column}], `;
-  });
+  getClickedElements()
+    .sort((elA, elB) => elA.dataset.column > elB.dataset.column)
+    .forEach((el) => {
+      text += `[${el.dataset.row}, ${el.dataset.column}], `;
+    });
   text = text.slice(0, -2);
   text += ']';
+  if (textsArray.includes(text)) {
+    alert('Taki payline już istnieje');
+    return;
+  }
   return text;
 };
 
 submitButton.addEventListener('click', () => {
   rows = document.getElementById('rows').value;
   columns = document.getElementById('columns').value;
-
   if (!columns || !rows) {
     alert('Wpisz wartości');
-
     return;
   }
-  if ((prevContainer = document.querySelector('.container'))) {
-    document.body.removeChild(prevContainer);
+  if (wrapper.children.length !== 0) {
+    wrapper.innerHTML = '';
+    generatedText.innerHTML = '';
+    textsArray.length = 0;
+    // generateButton.removeEventListener();
+    // removeButton.removeEventListener();
+  } else {
+    generateButton.addEventListener('click', () => {
+      textsArray.push(payline());
+      generatedText.innerHTML = printPaylines();
+    });
+    removeButton.addEventListener('click', () => {
+      textsArray.pop();
+      generatedText.innerHTML = printPaylines();
+    });
   }
-  const container = document.createElement('div');
-  container.classList.add('container');
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('wrapper');
   wrapper.style.width = `${columns * 100}px`;
   wrapper.style.height = `${rows * 100}px`;
-  document.body.appendChild(container);
-  container.appendChild(wrapper);
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       const element = document.createElement('a');
+      element.style.flexBasis = `${100 / columns}%`;
       element.dataset.row = i;
       element.dataset.column = j;
       element.addEventListener('click', () => {
@@ -79,16 +101,4 @@ submitButton.addEventListener('click', () => {
     }
   }
   aElements = document.querySelectorAll('a');
-  aElements.forEach((el) => (el.style.flexBasis = `${100 / columns}%`));
-  const generateButton = document.createElement('button');
-  generateButton.classList.add('generateButton');
-  generateButton.innerHTML = 'Generate';
-  const textfield = document.createElement('textarea');
-  textfield.id = 'generatedText';
-  generateButton.addEventListener('click', () => {
-    text = payline();
-    document.getElementById('generatedText').innerHTML += text + ',\n';
-  });
-  container.appendChild(generateButton);
-  container.appendChild(textfield);
 });
