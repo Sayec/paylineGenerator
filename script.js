@@ -51,7 +51,7 @@ const payline = () => {
   getClickedElements()
     .sort((elA, elB) => elA.dataset.column > elB.dataset.column)
     .forEach((el) => {
-      text += `[${el.dataset.row}, ${el.dataset.column}], `;
+      text += `[${el.dataset.column}, ${el.dataset.row}], `;
     });
   text = text.slice(0, -2);
   text += ']';
