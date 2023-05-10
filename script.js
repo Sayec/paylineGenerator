@@ -49,7 +49,7 @@ const payline = () => {
   }
   if (!testPassed) return 'Zaznacz pole w każdej kolumnie';
   getClickedElements()
-    .sort((elA, elB) => elA.dataset.column > elB.dataset.column)
+    .sort((elA, elB) => parseInt(elA.dataset.column) - parseInt(elB.dataset.column))
     .forEach((el) => {
       text += `[${el.dataset.column}, ${el.dataset.row}], `;
     });
